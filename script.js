@@ -1,62 +1,65 @@
 {
-    const tasks = [
 
+    const tasks = [
         {
-            content: "Nagrać lekcję",
+            content: "nagrać lekcję",
             done: false,
         },
         {
-            content: "Zjeśc pierogi",
+            content: "Zjeść pierogi",
             done: true,
         },
+
     ];
 
     const render = () => {
-        let htmlString = "";
+        htmlString = "";
 
         for (const task of tasks) {
             htmlString += `
-        <li 
-        ${task.done ?  "style=\"text-decoration:line-through\"" : ""} 
-        >
+        <li
+         ${task.done ? "style=\"text-decoration:line-through\"" : ""}
+         >
         ${task.content}
         </li>
+        
         `;
         }
 
         document.querySelector(".js-tasks").innerHTML = htmlString;
-
     };
 
     const addNewTask = (newTaskContent) =>{
         tasks.push({
-            content:newTaskContent,
+            content: newTaskContent,
         });
-
+    
         render();
     };
 
-    const onFormSubmit = (event) =>{
+    const onFormSubmit =(event) =>{
         event.preventDefault();
-       
-        const newTaskContent = document.querySelector(".js-newTask").value.trim();
-        
-        if (newTaskContent === "")
-        {
-            return;
-        }
-    
-        addNewTask(newTaskContent);
-        
-     };
 
-    const init = () => {
+    const newTaskContent = document.querySelector(".js-newTask").value.trim();
+    
+    if (newTaskContent === ""){
+        return;
+    }
+
+    addNewTask(newTaskContent);    
+
+    };
+    
+    init = () => {
         render();
 
-        const form = document.querySelector(".js-form");
 
-        form.addEventListener("submit", onFormSubmit);
-    }
+    const form = document.querySelector(".js-form");
+
+    form.addEventListener("submit", onFormSubmit);
+
+    
+    };
 
     init();
 
